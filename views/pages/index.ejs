@@ -2,20 +2,120 @@
 <html>
 <head>
     <% include ../partials/header.ejs %>
+    <script>
+        function calculateRate(mailWeight, mailType) {
+            let postageRate;
+
+            if (mailType == 'Letters (Stamped)') {
+                switch (mailWeight) {
+                    case mailWeight < 1:
+                        postageRate = .50;
+                        break;
+                    case mailWeight < 2:
+                        postageRate = .71;
+                        break;
+                    case mailWeight < 3:
+                        postageRate = .92;
+                        break;
+                    case mailWeight < 3.5:
+                        postageRate = 1.13;
+                        break;
+                }
+            }
+            if (mailType == 'Letters (Metered)') {
+                switch (mailWeight) {
+                    case mailWeight < 1:
+                        postageRate = .47;
+                        break;
+                    case mailWeight < 2:
+                        postageRate = .68;
+                        break;
+                    case mailWeight < 3:
+                        postageRate = .89;
+                        break;
+                    case mailWeight < 3.5:
+                        postageRate = 1.1;
+                        break;
+                }
+            }
+            if (mailType == 'Large Envelopes (Flats)') {
+                switch (mailWeight) {
+                    case mailWeight < 1:
+                        postageRate = .799;
+                        break;
+                    case mailWeight < 2:
+                        postageRate = 1.009;
+                        break;
+                    case mailWeight < 3:
+                        postageRate = 1.219;
+                        break;
+                    case mailWeight < 4:
+                        postageRate = 1.429;
+                        break;
+                    case mailWeight < 5:
+                        postageRate = 1.639;
+                        break;
+                    case mailWeight < 6:
+                        postageRate = 1.849;
+                        break;
+                    case mailWeight < 7:
+                        postageRate = 2.059;
+                        break;
+                    case mailWeight < 8:
+                        postageRate = 2.269;
+                        break;
+                    case mailWeight < 9:
+                        postageRate = 2.479;
+                        break;
+                    case mailWeight < 10:
+                        postageRate = 2.689;
+                        break;
+                    case mailWeight < 11:
+                        postageRate = 2.899;
+                        break;
+                    case mailWeight < 12:
+                        postageRate = 3.109;
+                        break;
+                    case mailWeight < 13:
+                        postageRate = 3.319;
+                        break;
+                    default:
+                        mailWeight = -1;
+                        break;
+                }
+                if (mailType == 'First-Class Package Service-Retail') {
+                    switch (mailWeight) {
+                        case mailWeight < 1:
+                            postageRate = 1.15;
+                            break;
+                        case mailWeight < 2:
+                            postageRate = 1.15;
+                            break;
+                        case mailWeight < 3:
+                            postageRate = 1.61;
+                            break;
+                        case mailWeight < 3.5:
+                            postageRate = 2.08;
+                            break;
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body>
     <% include ../partials/nav.ejs %>
     <div>
-        <form name="mailForm" method="get">
+        <form name="mailForm" action="getRate" method="post">
             <table>
                 <tr>
-                    <td>Weight:</td>
+                    <td><label for="itemWeight">Item Weight: </label></td>
                     <td><input type="text" id="itemWeight"></td>
                 </tr>
                 <tr>
-                    <td>Item Type:</td>
-                    <td><select>
+                    <td><label for="itemType[]">Type:</label></td>
+                    <td><select id="itemType[]">
                             <option>Letters (Stamped)</option>
                             <option>Letters (Metered)</option>
                             <option>Large Envelopes (Flats)</option>
