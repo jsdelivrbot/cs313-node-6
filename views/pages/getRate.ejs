@@ -1,9 +1,11 @@
 <html>
 <head>
-
 </head>
 <body>
-<p>This is the response to your submission.</p>
+<h1>Postal Cost Estimator</h1>
+
+<p>Your order of type "<%= itemType %>", which weighs <%= itemWeight %> pound(s) will cost: </p>
+<h2><%= calculateRate(itemType, itemWeight) %> dollars</h2>
 
 </body>
 </html>
