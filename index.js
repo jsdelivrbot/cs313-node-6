@@ -18,7 +18,6 @@ express()
     .get('/', (req, res) => res.render('home/index'))
     .get('/postageCalculator', (req, res) => res.render('postageCalculator/index'))
     .get('/getRate', (req, res) => res.render('postageCalculator/getRate'))
-    .get('/getPerson', (req, res) => res.render('teamActivity10/index'))
     .post('/getRate', (req, res) => {
         console.log('Request: ', req.body);
         let itemWeight = req.body.itemWeight,
@@ -28,4 +27,9 @@ express()
             itemType: itemType
         })
     })
+    .get('/getPerson', (req, res) => res.render('teamActivity10/index'))
+    .get('/physics', (req, res) => res.render('physics/index'))
+    .get('/physics/quotes', (req, res) => res.render('physics/quotes'))
+    .get('/physics/sim', (req, res) => res.render('physics/sim'))
+    .get('/physics/sim/highscores', (req, res) => res.render('physics/highscores'))
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
