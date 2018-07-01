@@ -7,7 +7,11 @@
 <% include ../partials/physicsnav.ejs %>
 <h1>Projectile Simulation</h1>
 
-
+<ul>
+    <% queryResult.forEach(function(r) { %>
+    <li><%= r.id %> - <%= r.shot_angle %></li>
+    <%});%>
+</ul>
 
 </body>
 </html>
